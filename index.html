@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        #image {
+            width: 500px;
+            height: 300px;
+            margin: 20px auto;
+            border: 2px solid #ccc;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            background-color: #333;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: border 0.3s;
+        }
+
+        .gallery img:hover {
+            border: 2px solid #007BFF;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Interactive Photo Gallery</h1>
+
+    <div id="image">
+        Hover over an image below to display here.
+    </div>
+
+    <div class="gallery">
+        <img src="https://cdn.audleytravel.com/2532/1808/79/1028541-ho-chi-minh-city-hall.jpg" alt=""
+            onmouseover="upDate(this)" onmouseout="undo()">
+
+        <img src="https://content.r9cdn.net/rimg/dimg/f0/b1/54455949-city-18144-167c85df43f.jpg?width=1366&height=768&xhint=1159&yhint=754&crop=true"
+            alt="" onmouseover="upDate(this)" onmouseout="undo()">
+
+        <img src="https://metro.co.uk/wp-content/uploads/2018/02/509551992.jpg?quality=90&strip=all" alt=""
+            onmouseover="upDate(this)" onmouseout="undo()">
+    </div>
+
+    <script>
+        function upDate(previewPic) {
+            console.log("Mouse over triggered");
+            console.log("Alt text:", previewPic.alt);
+            console.log("Image source:", previewPic.src);
+
+            // Đổi text
+            document.getElementById("image").innerHTML = previewPic.alt;
+            // Đổi background
+            document.getElementById("image").style.backgroundImage = "url('" + previewPic.src + "')";
+        }
+
+        function undo() {
+            console.log("Mouse out triggered");
+            // Reset background và text
+            document.getElementById("image").style.backgroundImage = "url('https://www.tripsavvy.com/thmb/3fsxdpotJdxqonaYjz3nhOGewWY=/5000x3342/filters:fill(auto,1)/ho-chi-minh-city-vietnam-49a4728cef79481197b73dc164436770.jpg')";
+            document.getElementById("image").innerHTML = ".";
+        }
+    </script>
+
+</body>
+
+</html>
